@@ -14,5 +14,7 @@
  (description "A longer description")
  (depends
    conf-autoconf
+   conf-libtool
+   conf-automake
    ctypes
    (alcotest :with-test)))

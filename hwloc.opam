@@ -11,6 +11,8 @@ bug-reports: "https://github.com/patricoferris/ocaml-hwloc/issues"
 depends: [
   "dune" {>= "3.0"}
   "conf-autoconf"
+  "conf-libtool"
+  "conf-automake"
   "ctypes"
   "alcotest" {with-test}
   "odoc" {with-doc}
