@@ -1,0 +1,3 @@
+[submodule "vendor/hwloc"]
+	path = vendor/hwloc
+	url = https://github.com/open-mpi/hwloc

@@ -1,0 +1,17 @@
+(rule
+ (deps
+  ../rename.h
+  ../bitmap.h
+  ../helper.h
+  ../inlines.h
+  ../diff.h
+  ../deprecated.h)
+ (targets rename.h bitmap.h helper.h inlines.h diff.h deprecated.h)
+ (action
+  (progn
+   (copy ../rename.h rename.h)
+   (copy ../bitmap.h bitmap.h)
+   (copy ../helper.h helper.h)
+   (copy ../inlines.h inlines.h)
+   (copy ../diff.h diff.h)
+   (copy ../deprecated.h deprecated.h))))

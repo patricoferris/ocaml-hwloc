@@ -1,0 +1,5 @@
+(rule
+ (deps ../../config.h)
+ (targets config.h)
+ (action
+  (copy ../../config.h config.h)))
