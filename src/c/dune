@@ -24,6 +24,38 @@
   (generated_types Types_generated)
   (generated_entry_point C)))
 
+; https://github.com/ocaml/dune/issues/4948 ergh...
+
+(rule
+ (deps
+  (source_tree %{project_root}/vendor/hwloc))
+ (targets libhwloc.a dllhwloc.so hwloc.h config.h rename.h bitmap.h helper.h inlines.h diff.h deprecated.h)
+ (enabled_if
+  (= %{system} macosx))
+ (action
+  (no-infer
+   (progn
+    (chdir
+     %{project_root}/vendor/hwloc
+     (progn
+      (run autoreconf -i)
+      (run mkdir -p install)
+      (run ./configure --enable-static --disable-libudev --disable-libxml2 --disable-opencl --disable-libnuma)
+      (setenv
+       CFLAGS
+       "%{ocaml-config:ocamlc_cflags}"
+       (run make -j))))
+    (copy %{project_root}/vendor/hwloc/include/hwloc.h hwloc.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/rename.h rename.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/bitmap.h bitmap.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/helper.h helper.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/inlines.h inlines.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/diff.h diff.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/deprecated.h deprecated.h)
+    (copy %{project_root}/vendor/hwloc/include/hwloc/autogen/config.h config.h)
+    (copy %{project_root}/vendor/hwloc/src/.libs/libhwloc.a libhwloc.a)
+    (copy %{project_root}/vendor/hwloc/src/.libs/libhwloc.dylib dllhwloc.so)))))
+
 (rule
  (deps
   (source_tree %{project_root}/vendor/hwloc))
@@ -49,5 +81,5 @@
     (copy %{project_root}/vendor/hwloc/include/hwloc/diff.h diff.h)
     (copy %{project_root}/vendor/hwloc/include/hwloc/deprecated.h deprecated.h)
     (copy %{project_root}/vendor/hwloc/include/hwloc/autogen/config.h config.h)
-    (copy %{project_root}/vendor/hwloc/src/.libs/libhwloc.a libhwloc.a)
-    (copy %{project_root}/vendor/hwloc/src/.libs/libhwloc.dylib dllhwloc.so)))))
+    (copy %{project_root}/vendor/hwloc/src/.libs/libhwloc%{ext_lib} libhwloc.a)
+    (copy %{project_root}/vendor/hwloc/src/.libs/libhwloc%{ext_dll} dllhwloc.so)))))
