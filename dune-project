@@ -13,5 +13,6 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends
+   conf-autoconf
    ctypes
    (alcotest :with-test)))
