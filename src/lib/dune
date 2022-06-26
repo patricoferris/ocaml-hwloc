@@ -1,4 +1,4 @@
 (library
- ; (public_name jansson)
+ (public_name hwloc)
  (name hwloc)
  (libraries hwloc_c))
