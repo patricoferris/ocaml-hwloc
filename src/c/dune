@@ -1,6 +1,7 @@
 (library
  (name hwloc_c)
  (public_name hwloc.c)
+ (install_c_headers hwloc)
  (library_flags -linkall)
  (foreign_archives hwloc)
  (flags
