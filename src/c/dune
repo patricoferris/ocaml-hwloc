@@ -44,6 +44,13 @@
 
 ; https://github.com/ocaml/dune/issues/4948 ergh...
 
+(install
+  (section stublibs)
+  (files
+    (dllhwloc.so as libhwloc.so)
+    (dllhwloc.so as libhwloc.so.5)
+    (dllhwloc.so as libhwloc.so.5.7.10)))
+
 (rule
  (deps
   (source_tree %{project_root}/vendor/hwloc))
