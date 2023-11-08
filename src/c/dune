@@ -1,7 +1,15 @@
 (library
  (name hwloc_c)
  (public_name hwloc.c)
- (install_c_headers hwloc config rename bitmap helper inlines diff deprecated)
+ (install_c_headers
+  hwloc
+  config
+  rename
+  bitmap
+  helper
+  inlines
+  diff
+  deprecated)
  (library_flags -linkall)
  (foreign_archives hwloc)
  (flags
@@ -45,11 +53,11 @@
 ; https://github.com/ocaml/dune/issues/4948 ergh...
 
 (install
-  (section stublibs)
-  (files
-    (dllhwloc.so as libhwloc.so)
-    (dllhwloc.so as libhwloc.so.5)
-    (dllhwloc.so as libhwloc.so.5.7.10)))
+ (section stublibs)
+ (files
+  (dllhwloc.so as libhwloc.so)
+  (dllhwloc.so as libhwloc.so.5)
+  (dllhwloc.so as libhwloc.so.5.7.10)))
 
 (rule
  (deps
